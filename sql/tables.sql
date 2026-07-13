@@ -24,7 +24,7 @@ CREATE TABLE IF NOT EXISTS orders(
     id SERIAL PRIMARY KEY,
     quantity INTEGER NOT NULL,
     status VARCHAR(10), /* IN_CART, FINISHED*/
-    book_id SERIAL REFERENCES books(id),
-    user_id SERIAL REFERENCES users(id)
+    book_id INT REFERENCES books(id),
+    user_id INT REFERENCES users(id)
 );
 
