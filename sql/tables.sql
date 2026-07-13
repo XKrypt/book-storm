@@ -1,0 +1,30 @@
+CREATE DATABASE  book_storm;
+
+
+CREATE TABLE IF NOT EXISTS users(
+    id SERIAL PRIMARY KEY,
+    first_name VARCHAR(100) NOT NULL,
+    last_name VARCHAR(250) NOT NULL,
+    email VARCHAR(200) NOT NULL,
+    password VARCHAR(32) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS books (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(300) NOT NULL,
+    author VARCHAR(300) NOT NULL,
+    release_date TIMESTAMP NOT NULL,
+    price MONEY NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS orders(
+    id SERIAL PRIMARY KEY,
+    quantity INTEGER NOT NULL,
+    status VARCHAR(10), /* IN_CART, FINISHED*/
+    book_id SERIAL REFERENCES books(id),
+    user_id SERIAL REFERENCES users(id)
+);
+
